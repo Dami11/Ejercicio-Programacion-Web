@@ -2,15 +2,29 @@
 class detallePedido 
 {
     //Declarar propiedad
-    protected $sueldo;
+    private int $id;
+    private int $id_pedido;
+    private $producto;
+    private int $cantidad;
+    private int $precio_unitario;
+
+
+
 
     //Declaracion de metodo
 
-    public function calcularSueldo(){
-        
-       return $this->sueldo = $this->sueldo * 1.3;
-    }
+  
+function getsubtotal(){ 
+
+
+    ($cantidad * $precio_unitario=$subtotal);
+
+    echo $this->cantidad;
     
+
+}
+
+
 }
 
 

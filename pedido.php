@@ -2,28 +2,21 @@
 
 class pedido{ 
 
-private $cantidad;
-private $precio_unitario;
+private int $id_pedido;
+private $cliente;
+private $fecha;
+
 
 
 
 function calcularMonto(){ 
 
 
-    ($cant * $precio_unitario)
+    ($cantidad * $precio_unitario)
     
 }    
 
 
-function getsubtotal(){ 
-
-
-    ($cant * $precio_unitario=$subtotal);
-
-    echo $this->cant;
-    
-
-}
 
 
 
