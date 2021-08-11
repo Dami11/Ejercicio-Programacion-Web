@@ -2,13 +2,15 @@
 
 
 
-class detallePedido {
+class detallePedido extends Conexion{
+    
     //Declarar propiedad
     private int $id;
     private int $id_pedido=1;
     private $producto;
     private int $cantidad=1;
     private int $precio_unitario=100;
+    
     
 
     //Declaracion de metodo

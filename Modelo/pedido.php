@@ -6,7 +6,7 @@ $detallePedido= new detallePedido();
 // $detallePedido->mostrarObjeto(); // Muestra el objeto
 
 
-class pedido{
+class pedido extends Conexion{
 
 
 
@@ -23,7 +23,7 @@ private $precio_unitario;
 public function calcularMonto(){
 
 
-    ($subtotal+$subtotal)
+    ()
 
 }
 

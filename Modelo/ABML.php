@@ -1,7 +1,7 @@
 <?php
-include_once("coneccionBD.php");
+include_once("conexionBD.php");
 
-class Personas_Model extends Conexion
+class Personas_Model extends Conexion 
 {
 
     private $conexion;

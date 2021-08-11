@@ -79,7 +79,7 @@
 
 <br>
 
-<label for="txt_nom">Producto: </label>
+<label for="txt_nom">Pedido: </label>
 <input type="text" name="txt_prod" required>
 <br>
 
