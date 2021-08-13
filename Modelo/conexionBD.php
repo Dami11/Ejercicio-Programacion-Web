@@ -2,16 +2,16 @@
 
 class Conexion extends PDO
 {
- private const USER = "root";
- private const PASS = "";
- private const DB = "ejercicio_web";
- private const HOST = "localhost";
- private const DSN = "mysql:host=" . self::HOST . ";dbname=" . self::DB . ";charset=utf8";
+ private  $USER = "root";
+ private  $PASS = "";
+ private  $DB = "ejercicio_web";
+ private  $HOST = "localhost";
+ private $DSN = "mysql:host=localhost;dbname=ejercicio_web;charset=utf8";
   
  public function __CONSTRUCT() {
 
     try{
-       parent::__CONSTRUCT(self::DSN, self::USER, self::PASS);
+       parent::__CONSTRUCT("mysql:host=localhost;dbname=ejercicio_web;charset=utf8", "root", "");
     }catch(PDOException $e){
        echo 'Ha surgido un error y no se puede conectar a la base de datos. Detalle: ' . $e->getMessage();
        exit;
