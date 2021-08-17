@@ -96,8 +96,28 @@
 
 <?php
 include "../Modelo/ABML.php";
+
+// Creo y llamo al objeto Listar
+
 $Lpedidos = new Pedidos_Model();
 $Lpedidos->ListarPedidos();
+
+// Creo y llamo al objeto Agregar
+
+$Apedidos = new Pedidos_Model();
+$Apedidos->AgregarPedidos();
+
+// Creo y llamo al objeto Modificar
+
+$Mpedidos = new Pedidos_Model();
+$Mpedidos->ModificarPedidos();
+
+// Creo y llamo al objeto Eliminar
+
+$Epedidos = new Pedidos_Model();
+$Epedidos->EliminarPedidos();
+
+
 ?>
 
 

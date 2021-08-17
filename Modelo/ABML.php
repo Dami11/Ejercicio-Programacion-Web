@@ -11,6 +11,11 @@ class Pedidos_Model extends Conexion
         $this->conexion = new Conexion();
     }
 
+
+    // Listar Pedidos
+
+
+
     public function ListarPedidos(){
         try {
             
@@ -61,16 +66,20 @@ class Pedidos_Model extends Conexion
 
 
 
-    public static function Agregar_Pedido_SP($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+        // Agregar Pedidos
+
+
+
+
+    public static function AgregarPedidos_SP($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
     {
         try {
             $con = new Conexion();
-            $sql = "CALL sp_agregar_persona(?,?,?,?,?,?,?)";
+            $sql = "CALL sp_AgregarPedidos(?,?,?,?,?,?)";
             $insert =  $con->prepare($sql);
             $insert->bindParam(1, $id_pedido, PDO::PARAM_INT); 
             $insert->bindParam(2, $cliente, PDO::PARAM_STR, 50);
-            $insert->bindParam(6, PDO::PARAM_STR, 10);  
-            $insert->bindParam(3, $fecha, PDO::PARAM_STR, 50); 
+            $insert->bindParam(3, $fecha, PDO::PARAM_STR, 10);  
             $insert->bindParam(4, $id_vendedor, PDO::PARAM_STR, 50); 
             $insert->bindParam(5, $monto_total, PDO::PARAM_STR, 50); 
             $insert->bindParam(6, $idInsert, PDO::PARAM_INT|PDO::PARAM_INPUT_OUTPUT); 
@@ -82,16 +91,15 @@ class Pedidos_Model extends Conexion
         }
     }
 
-    public function Agregar_Persona($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+    public function AgregarPedidos($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
     {
 
-        $sql = "INSERT INTO persona (
+        $sql = "INSERT INTO pedido (
             id_pedido, 
-            primer_nombre, 
-            segundo_nombre, 
-            primer_apellido, 
-            segundo_apellido, 
-            fecha_nac) VALUES (?,?,?,?,?,?)";
+            cliente, 
+            fecha, 
+            id_vendedor, 
+            monto_total) VALUES (?,?,?,?,?)";
         $insert =  $this->conexion->prepare($sql);
         $arrData = array($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
         $insert->execute($arrData);
@@ -99,22 +107,93 @@ class Pedidos_Model extends Conexion
         return $idInsert;
     }
 
-    public static function Agregar_Persona_Static($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+    public static function AgregarPedidos_Static($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
     {
 
         $con = new Conexion();
-        $sql = "INSERT INTO persona (
+        $sql = "INSERT INTO pedido (
             id_pedido, 
-            primer_nombre, 
-            segundo_nombre, 
-            primer_apellido, 
-            segundo_apellido, 
-            fecha_nac) VALUES (?,?,?,?,?,?)";
+            cliente, 
+            fecha, 
+            id_vendedor, 
+            monto_total) VALUES (?,?,?,?,?)";
         $insert = $con->prepare($sql);
         $arrData = array($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
         $insert->execute($arrData);
         $idInsert = $con->lastInsertId();
         return $idInsert;
     }
- 
+
+
+
+
+            // Modificar Pedidos
+
+
+            
+            public static function Modificar_pedido_Static($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+            {
+                $con = new Conexion();
+                $sql = "UPDATE pedido SET 
+                    id_pedido    =  :id_pedido
+                    cliente = :cliente, 
+                    fecha = :fecha, 
+                    id_vendedor = :id_vendedor, 
+                    monto_total = :monto_total, 
+                    WHERE id_pedido = :id_pedido";
+        
+                $update = $con->prepare($sql);
+                $update->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+                $update->bindParam(':cliente', $cliente, PDO::PARAM_STR, 25);
+                $update->bindParam(':fecha', $fecha, PDO::PARAM_STR, 25);
+                $update->bindParam(':id_vendedor', $id_vendedor, PDO::PARAM_STR, 25);
+                $update->bindParam(':monto_total', $monto_total, PDO::PARAM_STR, 25);
+                $respuesta = false;
+                if ($update->execute())
+                    $respuesta = true;
+                return $respuesta;
+            }
+        
+            public function ModificarPedidos($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+            {
+        
+                $con = new Conexion();
+                $sql = "UPDATE pedido SET 
+                    id_pedido = ?, 
+                    cliente = ?, 
+                    fecha = ?, 
+                    id_vendedor = ?, 
+                    monto_total = ?
+                    WHERE id_pedido = ?";
+        
+                $update = $con->prepare($sql);
+                $arrData = array($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
+                if ($update->execute($arrData))
+                    $respuesta = true;
+                return $respuesta;
+            }
+        
+        
+
+
+            // Eliminar Pedidos
+
+
+
+
+            public function EliminarPedidos($id_pedido)
+            {
+                $con = new Conexion();
+                $sql = "DELETE FROM `pedido` WHERE `id_pedido`= :id_pedido";
+                $update = $con->prepare($sql);
+                $update->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+                $respuesta = false;
+                if ($update->execute())
+                    $respuesta = true;
+                return $respuesta;
+            }
 }
+
+
+
+
