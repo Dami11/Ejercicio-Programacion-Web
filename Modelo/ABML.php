@@ -91,17 +91,17 @@ class Pedidos_Model extends Conexion
         }
     }
 
-    public function AgregarPedidos($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+    public function AgregarPedidos( $cliente, $fecha, $id_vendedor, $monto_total)
     {
 
         $sql = "INSERT INTO pedido (
-            id_pedido, 
+       
             cliente, 
             fecha, 
             id_vendedor, 
-            monto_total) VALUES (?,?,?,?,?)";
+            monto_total) VALUES (?,?,?,?)";
         $insert =  $this->conexion->prepare($sql);
-        $arrData = array($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
+        $arrData = array( $cliente, $fecha, $id_vendedor, $monto_total);
         $insert->execute($arrData);
         $idInsert =  $this->conexion->lastInsertId();
         return $idInsert;

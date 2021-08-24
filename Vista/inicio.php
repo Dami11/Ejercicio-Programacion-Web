@@ -13,6 +13,63 @@
 <body>
     
 
+<!--Formulario-->
+
+<form action="" method="POST"><br>Ingrese su pedido:
+
+<br>
+
+<label for="txt_prod">Pedido: </label>
+<input type="text" name="txt_prod" required>
+<br>
+
+<label for="txt_cant">Cantidad: </label>
+<input type="text" name="txt_cant" required>
+
+
+</form>
+
+<?php
+include "../Modelo/ABML.php";
+
+
+// Obtengo los datos enviados por el Formulario
+
+$producto = $_POST['txt_prod'];
+$cantidad = $_POST['txt_cant'];
+
+
+// Creo un objeto de la clase ABML
+$abml = new Pedidos_Model();
+$abml->AgregarPedidos($cliente, $fecha, $id_vendedor, $monto_total);
+
+
+
+
+
+// Creo y llamo al objeto Listar
+
+$Lpedidos = new Pedidos_Model();
+$Lpedidos->ListarPedidos();
+
+// Creo y llamo al objeto Agregar
+
+$Apedidos = new Pedidos_Model();
+$Apedidos->AgregarPedidos($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
+
+// Creo y llamo al objeto Modificar
+
+$Mpedidos = new Pedidos_Model();
+$Mpedidos->ModificarPedidos($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
+
+// Creo y llamo al objeto Eliminar
+
+$Epedidos = new Pedidos_Model();
+$Epedidos->EliminarPedidos($id_pedido);
+
+
+?>
+
     
      <!-- Header y Barra de navegación -->
 
@@ -51,38 +108,10 @@
     </div>
 
              <!-- Header y Barra de navegación -->
+     
 
 
 
-           <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>        </style>
-    <title>Document</title>
-</head>
-<body>
-
-
-
-
-<!--Formulario-->
-
-<form action="" method="get"><br>Ingrese su pedido:
-
-<br>
-
-<label for="txt_nom">Pedido: </label>
-<input type="text" name="txt_prod" required>
-<br>
-
-<label for="txt_edad">Cantidad: </label>
-<input type="text" name="txt_cant" required>
-
-
-</form>
 
   
 
@@ -92,33 +121,6 @@
 
 
 <!--Formulario-->
-
-
-<?php
-include "../Modelo/ABML.php";
-
-// Creo y llamo al objeto Listar
-
-$Lpedidos = new Pedidos_Model();
-$Lpedidos->ListarPedidos();
-
-// Creo y llamo al objeto Agregar
-
-$Apedidos = new Pedidos_Model();
-$Apedidos->AgregarPedidos($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
-
-// Creo y llamo al objeto Modificar
-
-$Mpedidos = new Pedidos_Model();
-$Mpedidos->ModificarPedidos($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
-
-// Creo y llamo al objeto Eliminar
-
-$Epedidos = new Pedidos_Model();
-$Epedidos->EliminarPedidos($id_pedido);
-
-
-?>
 
 
 
