@@ -69,7 +69,7 @@ class Pedidos_Model extends Conexion
 
 
 
-    public static function AgregarPedidos_SP($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+    public static function AgregarPedidos_SP($cliente, $fecha, $id_vendedor, $monto_total)
     {
         try {
             $con = new Conexion();
@@ -103,7 +103,7 @@ class Pedidos_Model extends Conexion
         return $idInsert;
     }
 
-    public static function AgregarPedidos_Static($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+    public static function AgregarPedidos_Static($cliente, $fecha, $id_vendedor, $monto_total)
     {
 
         $con = new Conexion();
@@ -113,7 +113,7 @@ class Pedidos_Model extends Conexion
             id_vendedor, 
             monto_total) VALUES (?,?,?,?)";
         $insert = $con->prepare($sql);
-        $arrData = array($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
+        $arrData = array($cliente, $fecha, $id_vendedor, $monto_total);
         $insert->execute($arrData);
         $idInsert = $con->lastInsertId();
         return $idInsert;
