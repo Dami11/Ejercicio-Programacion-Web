@@ -36,7 +36,6 @@ class Pedidos_Model extends Conexion
                 if ($resultado->fetchColumn() > 0) {
                     echo "<table border='1' align='center'>
                         <tr bgcolor='#E6E6E6'>
-                            <th>id_pedido</th>
                             <th>cliente</th>
                             <th>fecha</th>
                             <th>id_vendedor</th>
@@ -45,8 +44,7 @@ class Pedidos_Model extends Conexion
         
                     foreach ($resultado as $fila) {
         
-                        echo "<tr>
-                        <td>" . $fila["id_pedido"] . "</td>";
+                        echo "<tr>";
                         echo "<td>" . $fila["cliente"] . "</td>";
                         echo "<td>" . $fila["fecha"] . "</td>";
                         echo "<td>" . $fila["id_vendedor"] . "</td>";
@@ -75,14 +73,13 @@ class Pedidos_Model extends Conexion
     {
         try {
             $con = new Conexion();
-            $sql = "CALL sp_AgregarPedidos(?,?,?,?,?,?)";
+            $sql = "CALL sp_AgregarPedidos(?,?,?,?,?)";
             $insert =  $con->prepare($sql);
-            $insert->bindParam(1, $id_pedido, PDO::PARAM_INT); 
-            $insert->bindParam(2, $cliente, PDO::PARAM_STR, 50);
-            $insert->bindParam(3, $fecha, PDO::PARAM_STR, 10);  
-            $insert->bindParam(4, $id_vendedor, PDO::PARAM_STR, 50); 
-            $insert->bindParam(5, $monto_total, PDO::PARAM_STR, 50); 
-            $insert->bindParam(6, $idInsert, PDO::PARAM_INT|PDO::PARAM_INPUT_OUTPUT); 
+            $insert->bindParam(1, $cliente, PDO::PARAM_STR, 50);
+            $insert->bindParam(2, $fecha, PDO::PARAM_STR, 10);  
+            $insert->bindParam(3, $id_vendedor, PDO::PARAM_STR, 50); 
+            $insert->bindParam(4, $monto_total, PDO::PARAM_STR, 50); 
+            $insert->bindParam(5, $idInsert, PDO::PARAM_INT|PDO::PARAM_INPUT_OUTPUT); 
             $insert->execute();
             return $idInsert;
         } catch (PDOException $pe) {
@@ -95,7 +92,6 @@ class Pedidos_Model extends Conexion
     {
 
         $sql = "INSERT INTO pedido (
-       
             cliente, 
             fecha, 
             id_vendedor, 
@@ -111,12 +107,11 @@ class Pedidos_Model extends Conexion
     {
 
         $con = new Conexion();
-        $sql = "INSERT INTO pedido (
-            id_pedido, 
+        $sql = "INSERT INTO pedido ( 
             cliente, 
             fecha, 
             id_vendedor, 
-            monto_total) VALUES (?,?,?,?,?)";
+            monto_total) VALUES (?,?,?,?)";
         $insert = $con->prepare($sql);
         $arrData = array($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
         $insert->execute($arrData);

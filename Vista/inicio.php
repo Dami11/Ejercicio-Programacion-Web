@@ -15,18 +15,28 @@
 
 <!--Formulario-->
 
-<form action="" method="POST"><br>Ingrese su pedido:
+<form action="inicio.php" method="POST"><br>Ingrese su pedido:
 
 <br>
 
-<label for="txt_prod">Pedido: </label>
-<input type="text" name="txt_prod" required>
+<label for="txt_cli">Cliente </label>
+<input type="text" name="txt_cli" required>
 <br>
 
-<label for="txt_cant">Cantidad: </label>
-<input type="text" name="txt_cant" required>
+<label for="txt_fec">Fecha: </label>
+<input type="date" name="txt_fec" required>
+<br>
 
+<label for="txt_ven">Vendedor: </label>
+<input type="number" name="txt_ven" required>
+<br>
 
+<label for="txt_mon">Monto Total: </label>
+<input type="number" name="txt_mon" required>
+<br>
+
+<label for="txt_num"> </label>
+<input type="submit">
 </form>
 
 <?php
@@ -35,9 +45,10 @@ include "../Modelo/ABML.php";
 
 // Obtengo los datos enviados por el Formulario
 
-$producto = $_POST['txt_prod'];
-$cantidad = $_POST['txt_cant'];
-
+$cliente = $_POST['txt_cli'];
+$fecha = $_POST['txt_fec'];
+$id_vendedor = $_POST['txt_ven'];
+$monto_total = $_POST['txt_mon'];
 
 // Creo un objeto de la clase ABML
 $abml = new Pedidos_Model();
