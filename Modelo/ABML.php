@@ -126,7 +126,7 @@ class Pedidos_Model extends Conexion
 
 
             
-            public static function Modificar_pedido_Static($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+            public static function Modificar_pedido_Static($cliente, $fecha, $id_vendedor, $monto_total)
             {
                 $con = new Conexion();
                 $sql = "UPDATE pedido SET 
@@ -138,7 +138,6 @@ class Pedidos_Model extends Conexion
                     WHERE id_pedido = :id_pedido";
         
                 $update = $con->prepare($sql);
-                $update->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
                 $update->bindParam(':cliente', $cliente, PDO::PARAM_STR, 25);
                 $update->bindParam(':fecha', $fecha, PDO::PARAM_STR, 25);
                 $update->bindParam(':id_vendedor', $id_vendedor, PDO::PARAM_STR, 25);
@@ -149,12 +148,11 @@ class Pedidos_Model extends Conexion
                 return $respuesta;
             }
         
-            public function ModificarPedidos($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total)
+            public function ModificarPedidos($cliente, $fecha, $id_vendedor, $monto_total)
             {
         
                 $con = new Conexion();
                 $sql = "UPDATE pedido SET 
-                    id_pedido = ?, 
                     cliente = ?, 
                     fecha = ?, 
                     id_vendedor = ?, 
@@ -162,7 +160,7 @@ class Pedidos_Model extends Conexion
                     WHERE id_pedido = ?";
         
                 $update = $con->prepare($sql);
-                $arrData = array($id_pedido, $cliente, $fecha, $id_vendedor, $monto_total);
+                $arrData = array($cliente, $fecha, $id_vendedor, $monto_total);
                 if ($update->execute($arrData))
                     $respuesta = true;
                 return $respuesta;
