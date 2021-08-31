@@ -1,6 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
 <?php
 include "template.php";
 ?>
+
 
 <!--Formulario-->
 
@@ -47,4 +60,15 @@ $fecha = $_POST['txt_fec'];
 $id_vendedor = $_POST['txt_ven'];
 $monto_total = $_POST['txt_mon'];
 
+
+// Creo un objeto de la clase ABML
+
+$abml = new Pedidos_Model();
+$abml->AgregarPedidos($cliente, $fecha, $id_vendedor, $monto_total);
+
+
+
 ?>
+
+</body>
+</html>

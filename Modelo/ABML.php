@@ -44,8 +44,8 @@ class Pedidos_Model extends Conexion
         
                     foreach ($resultado as $fila) {
         
-                        echo "<tr>";
-                        echo "<td>" . $fila["cliente"] . "</td>";
+                        echo "<tr>
+                        <td>" . $fila["cliente"] . "</td>";
                         echo "<td>" . $fila["fecha"] . "</td>";
                         echo "<td>" . $fila["id_vendedor"] . "</td>";
                         echo "<td>" . $fila["monto_total"] . "</td></tr>";
@@ -130,12 +130,11 @@ class Pedidos_Model extends Conexion
             {
                 $con = new Conexion();
                 $sql = "UPDATE pedido SET 
-                    id_pedido    =  :id_pedido
                     cliente = :cliente, 
                     fecha = :fecha, 
                     id_vendedor = :id_vendedor, 
                     monto_total = :monto_total, 
-                    WHERE id_pedido = :id_pedido";
+                    WHERE id_vendedor = :id_vendedor";
         
                 $update = $con->prepare($sql);
                 $update->bindParam(':cliente', $cliente, PDO::PARAM_STR, 25);
@@ -157,7 +156,7 @@ class Pedidos_Model extends Conexion
                     fecha = ?, 
                     id_vendedor = ?, 
                     monto_total = ?
-                    WHERE id_pedido = ?";
+                    WHERE id_vendedor = ?";
         
                 $update = $con->prepare($sql);
                 $arrData = array($cliente, $fecha, $id_vendedor, $monto_total);
@@ -174,12 +173,12 @@ class Pedidos_Model extends Conexion
 
 
 
-            public function EliminarPedidos($id_pedido)
+            public function EliminarPedidos($id_vendedor)
             {
                 $con = new Conexion();
-                $sql = "DELETE FROM `pedido` WHERE `id_pedido`= :id_pedido";
+                $sql = "DELETE FROM `pedido` WHERE `id_vendedor`= :id_vendedor";
                 $update = $con->prepare($sql);
-                $update->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+                $update->bindParam(':id_vendedor', $id_vendedor, PDO::PARAM_INT);
                 $respuesta = false;
                 if ($update->execute())
                     $respuesta = true;
