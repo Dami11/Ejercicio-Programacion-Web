@@ -54,6 +54,7 @@ include "../Modelo/ABML.php";
 
 
 // Obtengo los datos enviados por el Formulario
+if (isset($_POST['txt_cli'])) {
 
 $cliente = $_POST['txt_cli'];
 $fecha = $_POST['txt_fec'];
@@ -67,7 +68,7 @@ $abml = new Pedidos_Model();
 $abml->AgregarPedidos($cliente, $fecha, $id_vendedor, $monto_total);
 
 
-
+}
 ?>
 
 </body>

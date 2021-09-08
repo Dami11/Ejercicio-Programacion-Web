@@ -33,7 +33,6 @@ class Pedidos_Model extends Conexion
                 $consulta = "SELECT * FROM pedido";
                 $resultado = $con->query($consulta);
         
-                if ($resultado->fetchColumn() > 0) {
                     echo "<table border='1' align='center'>
                         <tr bgcolor='#E6E6E6'>
                             <th>cliente</th>
@@ -49,10 +48,7 @@ class Pedidos_Model extends Conexion
                         echo "<td>" . $fila["fecha"] . "</td>";
                         echo "<td>" . $fila["id_vendedor"] . "</td>";
                         echo "<td>" . $fila["monto_total"] . "</td></tr>";
-                    }
-                    
-                } else {
-                    echo "No hay Registros";
+                 
                 }
             }
         } catch (PDOException $e) {
