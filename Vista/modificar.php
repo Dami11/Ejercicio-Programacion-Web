@@ -52,6 +52,7 @@ include "template.php";
 include "../Modelo/ABML.php";
 
 
+
 // Obtengo los datos enviados por el Formulario
 if (isset($_POST['txt_cli'])) {
 
