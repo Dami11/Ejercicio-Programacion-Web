@@ -59,9 +59,8 @@ class Pedidos_Model extends Conexion
                         echo "<td>" . $fila["fecha"] . "</td>";
                         echo "<td>" . $fila["id_vendedor"] . "</td>";
                         echo "<td>" . $fila["monto_total"] . "</td></tr>";
-                        ?>
-                        <h5><a href="modificar.php">Editar</a></h5>
-                        <?php
+                       
+                        
                         
                 }
             }
@@ -164,7 +163,6 @@ class Pedidos_Model extends Conexion
                 $sql = "UPDATE pedido SET 
                     cliente = ?, 
                     fecha = ?, 
-                    id_vendedor = ?, 
                     monto_total = ?
                     WHERE id_vendedor = ?";
         
